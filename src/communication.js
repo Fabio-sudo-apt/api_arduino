@@ -1,11 +1,16 @@
-const { SerialPort } = require('serialport')
-const { ReadlineParser } = require('@serialport/parser-readline')
-const port = new SerialPort({ path: 'COM4', baudRate: 9600  });
+const { SerialPort } = require("serialport");
 
+const port = new SerialPort({
+  path: "/dev/ttyUSB0",
+  baudRate: 9600,
+});
 
-const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }))
+module.exports = {
+  on: () => {
+    port.write("ON");
+  },
 
-port.pipe(parser);
-
-module.exports = port
-
+  off: () => {
+    port.write("OFF");
+  },
+};

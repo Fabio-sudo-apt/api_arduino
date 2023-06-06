@@ -1,18 +1,10 @@
-const express = require("express")
-const app = express()
-
-const portSerial = require("./communication")
-const router = require("./router")
+const express = require("express");
+const app = express();
+const router = require("./router");
 
 const port = 3000;
 
-app.use(router)
-
-
-// Melhora isso!
+app.use(router);
 app.listen(port, () => {
-    console.log("Server ON!")
-    portSerial.on("open", () => {
-        console.log("Connect  Arduino ON")
-    })
-})
+  console.log("Server ON!");
+});
